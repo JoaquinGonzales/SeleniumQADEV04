@@ -1,9 +1,7 @@
 package framework;
 
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -35,6 +33,19 @@ public class FindElement {
         catch(NoSuchElementException e)
         {
            return false;
+        }
+    }
+    public static void elementHighlight(WebElement element) {
+
+        WebDriver driver = DriverManager.getWebDriver().getDriver();
+        for (int i = 0; i < 2; i++) {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript(
+                    "arguments[0].setAttribute('style', arguments[1]);",
+                    element, "color: red; border: 3px solid red;");
+            js.executeScript(
+                    "arguments[0].setAttribute('style', arguments[1]);",
+                    element, "");
         }
     }
 }

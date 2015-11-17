@@ -21,6 +21,10 @@ public class CreateProjectPage extends BasePageObject
     WebElement projectNameInput;
     @FindBy(id = "description")
     WebElement projectDescriptionInput;
+    @FindBy(xpath = "//input[@id='ongoing']")
+    WebElement checkBoxOngoing;
+    @FindBy(id="startDate")
+    WebElement startDateInput;
 
     public CreateProjectPage()
     {
@@ -49,5 +53,16 @@ public class CreateProjectPage extends BasePageObject
         saveButton.click();
         return new MainPage();
     }
-   // public MainPage createProject(String )
+    public CreateProjectPage setStartDate(String startDate)
+    {
+        checkBoxOngoing.click();
+        wait.until(ExpectedConditions.elementToBeClickable(startDateInput));
+        startDateInput.isEnabled();
+        return this;
+    }
+    public CreateProjectPage setDueDate(String dueDate)
+    {
+
+        return this;
+    }
 }

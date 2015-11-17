@@ -4,6 +4,7 @@ import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.api.java.en.And;
 import org.testng.Assert;
 import ui.pages.CreateProjectPage;
 import ui.pages.LoginPage;
@@ -34,6 +35,13 @@ public class Project {
     {
         projectPage = projectPage.setProjectName(projectName);
         projectPage = projectPage.setProjectDescription(projectDescription);
+
+    }
+    @And("^with a Start Date \"(.*?)\" and with a Finish Date \"(.*?)\"$")
+    public void setStartAndFinishDate(String startDate, String finishDate)
+    {
+        projectPage = projectPage.setStartDate(startDate);
+        projectPage = projectPage.setDueDate(finishDate);
         main = projectPage.clickSaveButton();
     }
     @Then("^I should have the project created in the main page$")
