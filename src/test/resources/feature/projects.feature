@@ -5,7 +5,8 @@ Feature: Projects Management
   Background:
     Given I navigate to login Page
     And I login as "joaquinjqn2@gmail.com" with password "P4ssw0rd"
-    @Project
+   @CreateProject
+   @logout
    Scenario: Create a new project with Project Name and Project Description with a Start Date
              and a Due Date for the project
     Given I want to create a project
@@ -13,7 +14,12 @@ Feature: Projects Management
           And with a Start Date "Nov 17 2015" and with a Finish Date "Nov 25 2015"
     Then I should have the project created in the main page
 
+   @DeleteProject
+   @logout
    Scenario: Delete a Project with Project Name and Project Description
-   Given
+   Given I go to Projects page
+   When  I select a Project with Name "ProjectName" and a "ProjectDescription"
+         And I Delete the project
+   Then  I should have the project Deleted in the main page
 
 
