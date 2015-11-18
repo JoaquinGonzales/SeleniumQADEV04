@@ -1,5 +1,6 @@
 package ui.pages;
 
+import framework.ElementManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -25,6 +26,8 @@ public class CreateProjectPage extends BasePageObject
     WebElement checkBoxOngoing;
     @FindBy(id="startDate")
     WebElement startDateInput;
+    @FindBy(id = "dueDate")
+    WebElement dueDateInput;
 
     public CreateProjectPage()
     {
@@ -57,12 +60,16 @@ public class CreateProjectPage extends BasePageObject
     {
         checkBoxOngoing.click();
         wait.until(ExpectedConditions.elementToBeClickable(startDateInput));
-        startDateInput.isEnabled();
+        ElementManager.elementHighlight(startDateInput);
+        ElementManager.setAttributeValue(startDateInput,"readonly"," ");
+        ElementManager.setAttributeValue(startDateInput,"value",startDate);
         return this;
     }
     public CreateProjectPage setDueDate(String dueDate)
     {
-
+        ElementManager.elementHighlight(dueDateInput);
+        ElementManager.setAttributeValue(dueDateInput,"readonly"," ");
+        ElementManager.setAttributeValue(dueDateInput,"value",dueDate);
         return this;
     }
 }

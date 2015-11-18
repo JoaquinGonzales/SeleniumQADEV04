@@ -1,6 +1,6 @@
 package ui.pages;
 
-import framework.FindElement;
+import framework.ElementManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -56,6 +56,8 @@ public class MainPage extends BasePageObject
     public boolean projectCreated(String projectName)
     {
         By selector = By.xpath("//a[contains(text()," + projectName + ")]");
-        return FindElement.getInstance().findElementPresent(selector);
+        WebElement element = driver.findElement(By.xpath("//a[contains(text()," + projectName + ")]"));
+        ElementManager.elementHighlight(element);
+        return ElementManager.getInstance().findElementPresent(selector);
     }
 }

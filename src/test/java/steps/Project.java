@@ -21,7 +21,8 @@ public class Project {
     public MainPage main;
     public LoginPage loginPage;
     public CreateProjectPage projectPage;
-    public String newProjectName="project1";
+    public String newProjectName;
+    public String newProjectDesctiption;
 
     @Given("^I want to create a project$")
     public void createProject()
@@ -33,6 +34,8 @@ public class Project {
     @When("^I create a new project with \"(.*?)\" and a \"(.*?)\"$")
     public void createNewProject(String projectName, String projectDescription)
     {
+        newProjectName = projectName;
+        newProjectDesctiption = projectDescription;
         projectPage = projectPage.setProjectName(projectName);
         projectPage = projectPage.setProjectDescription(projectDescription);
 

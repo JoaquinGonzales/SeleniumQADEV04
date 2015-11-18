@@ -10,17 +10,17 @@ import org.openqa.selenium.*;
  * Time: 4:23 PM
  * To change this template use File | Settings | File Templates.
  */
-public class FindElement {
-    private static FindElement instance;
-    WebDriver driver = DriverManager.getWebDriver().getDriver();
-    protected FindElement()
+public class ElementManager {
+    private static ElementManager instance;
+    public WebDriver driver = DriverManager.getWebDriver().getDriver();
+    protected ElementManager()
     {
 
     }
-    public static FindElement getInstance()
+    public static ElementManager getInstance()
     {
         if(instance == null)
-            instance = new FindElement();
+            instance = new ElementManager();
         return instance;
     }
     public boolean findElementPresent(By element)
@@ -37,7 +37,7 @@ public class FindElement {
     }
     public static void elementHighlight(WebElement element) {
 
-        WebDriver driver = DriverManager.getWebDriver().getDriver();
+       WebDriver driver = DriverManager.getWebDriver().getDriver();
         for (int i = 0; i < 2; i++) {
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript(
@@ -47,5 +47,12 @@ public class FindElement {
                     "arguments[0].setAttribute('style', arguments[1]);",
                     element, "");
         }
+    }
+    public static void setAttributeValue(WebElement elem,String atribute, String value){
+        WebDriver driver = DriverManager.getWebDriver().getDriver();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        String scriptSetAttrValue = "arguments[0].setAttribute(arguments[1],arguments[2])";
+        js.executeScript(scriptSetAttrValue, elem, atribute, value);
+
     }
 }

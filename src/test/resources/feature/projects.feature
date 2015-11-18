@@ -6,23 +6,13 @@ Feature: Projects Management
     Given I navigate to login Page
     And I login as "joaquinjqn2@gmail.com" with password "P4ssw0rd"
     @Project
-   Scenario Outline: Create a new project with Project Name and Project Description
+   Scenario: Create a new project with Project Name and Project Description with a Start Date
+             and a Due Date for the project
     Given I want to create a project
-    When  I create a new project with "<ProjectName>" and a "<ProjectDescription>"
-          And with a Start Date "11/17/2015" and with a Finish Date "11/25/2015"
+    When  I create a new project with "ProjectName" and a "ProjectDescription"
+          And with a Start Date "Nov 17 2015" and with a Finish Date "Nov 25 2015"
     Then I should have the project created in the main page
-      Examples:
-      |ProjectName  |ProjectDescription   |
-      |ProjectName1 |ProjectDescription1  |
-      |ProjectName2 |ProjectDescription2  |
 
-  Scenario Outline: Delete a project with Project Name and Project Description
-    Given I go to projects page
-          And I have a Project Created with "<ProjectName>" and "<ProjectDescription>"
-    When  I Delete a Project with "<ProjectName>" and "<ProjectDescription>"
-    Then I should have the project created in the main page
-  Examples:
-    |ProjectName  |ProjectDescription   |
-    |ProjectName1 |ProjectDescription1  |
+     Scenario: Delete a Project with Project Name and Project Description
 
 

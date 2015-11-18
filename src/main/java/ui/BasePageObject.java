@@ -15,7 +15,6 @@ import ui.pages.TopMenuPage;
  */
 public abstract class BasePageObject
 {
-    public TopMenuPage topMenuPage;
     protected WebDriver driver;
     protected WebDriverWait wait;
 
@@ -23,7 +22,6 @@ public abstract class BasePageObject
     {
         this.driver = DriverManager.getWebDriver().getDriver();
         this.wait = DriverManager.getWebDriver().getWait();
-        this.topMenuPage = new TopMenuPage();
         PageFactory.initElements(driver,this);
     }
     public abstract void waitUntilPageObjectIsLoaded();
