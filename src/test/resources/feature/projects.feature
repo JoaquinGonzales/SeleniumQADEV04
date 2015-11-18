@@ -13,6 +13,7 @@ Feature: Projects Management
           And with a Start Date "Nov 17 2015" and with a Finish Date "Nov 25 2015"
     Then I should have the project created in the main page
 
-     Scenario: Delete a Project with Project Name and Project Description
+   Scenario: Delete a Project with Project Name and Project Description
+   Given
 
 

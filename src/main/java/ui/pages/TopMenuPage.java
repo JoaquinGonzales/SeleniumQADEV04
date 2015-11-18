@@ -19,18 +19,27 @@ public class TopMenuPage extends BasePageObject{
     WebElement logoUser;
     @FindBy(xpath ="//div[@id='toolbar']/div/div[2]/ul/li[5]/a/span[2]")
     WebElement clientsPageButton;
+    @FindBy(xpath = "//div[@id='toolbar']/div/div[2]/ul/li/a")
+    WebElement ProjectPageButton;
+    @FindBy(xpath = "//div[@id='toolbar']/div/div[2]/ul/li[2]/a")
+    WebElement TasksPageButton;
     public TopMenuPage()
     {
         PageFactory.initElements(driver,this);
-
+        waitUntilPageObjectIsLoaded();
     }
     public void waitUntilPageObjectIsLoaded()
     {
         wait.until(ExpectedConditions.visibilityOf(logoUser));
     }
-    public ClientPage createNewClient()
+    public ClientPage goToClientPage()
     {
         clientsPageButton.click();
         return new ClientPage();
+    }
+    public ProjectPage goToProjectPage()
+    {
+        ProjectPageButton.click();
+        return new ProjectPage();
     }
 }

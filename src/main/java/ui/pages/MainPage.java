@@ -17,6 +17,7 @@ import ui.BasePageObject;
  */
 public class MainPage extends BasePageObject
 {
+    public TopMenuPage topMenuPage;
     @FindBy(xpath = "//div[@id='toolbar']/div/ul/li[6]/a/div/div")
     WebElement logoUser;
     @FindBy(xpath = "//div[@id='toolbar']/div/ul/li[6]/ul/li[6]/a")
@@ -30,6 +31,7 @@ public class MainPage extends BasePageObject
     {
         PageFactory.initElements(driver,this);
         waitUntilPageObjectIsLoaded();
+        this.topMenuPage = new TopMenuPage();
     }
     public void waitUntilPageObjectIsLoaded()
     {
@@ -52,6 +54,10 @@ public class MainPage extends BasePageObject
        addProjectButton.click();
        wait.until(ExpectedConditions.visibilityOf(saveButton));
        return new CreateProjectPage();
+    }
+    public ProjectPage goToProjectPage()
+    {
+        return topMenuPage.goToProjectPage();
     }
     public boolean projectCreated(String projectName)
     {
