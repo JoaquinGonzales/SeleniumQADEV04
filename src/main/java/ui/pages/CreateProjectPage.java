@@ -51,25 +51,34 @@ public class CreateProjectPage extends BasePageObject
         projectDescriptionInput.sendKeys(projectDescription);
         return this;
     }
-    public MainPage clickSaveButton()
-    {
-        saveButton.click();
-        return new MainPage();
-    }
+
     public CreateProjectPage setStartDate(String startDate)
     {
         checkBoxOngoing.click();
         wait.until(ExpectedConditions.elementToBeClickable(startDateInput));
         ElementManager.elementHighlight(startDateInput);
-        ElementManager.setAttributeValue(startDateInput,"readonly"," ");
+        ElementManager.setAttributeDisable(startDateInput);
         ElementManager.setAttributeValue(startDateInput,"value",startDate);
         return this;
     }
     public CreateProjectPage setDueDate(String dueDate)
     {
         ElementManager.elementHighlight(dueDateInput);
-        ElementManager.setAttributeValue(dueDateInput,"readonly"," ");
+        ElementManager.setAttributeDisable(dueDateInput);
         ElementManager.setAttributeValue(dueDateInput,"value",dueDate);
         return this;
+    }
+    public MainPage clickSaveButton()
+    {
+        saveButton.click();
+        return new MainPage();
+    }
+    public MainPage createProject(String projectName, String projectDescription, String startDate, String dueDate)
+    {
+        setProjectName(projectName);
+        setProjectDescription(projectDescription);
+        setStartDate(startDate);
+        setDueDate(dueDate);
+        return clickSaveButton();
     }
 }

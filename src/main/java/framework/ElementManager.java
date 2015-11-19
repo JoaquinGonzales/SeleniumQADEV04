@@ -12,17 +12,19 @@ import org.openqa.selenium.*;
  */
 public class ElementManager {
     private static ElementManager instance;
-    public WebDriver driver = DriverManager.getWebDriver().getDriver();
+    public static WebDriver driver = DriverManager.getWebDriver().getDriver();
     protected ElementManager()
     {
 
     }
+
     public static ElementManager getInstance()
     {
         if(instance == null)
             instance = new ElementManager();
         return instance;
     }
+
     public boolean findElementPresent(By element)
     {
        try
@@ -35,9 +37,9 @@ public class ElementManager {
            return false;
         }
     }
-    public static void elementHighlight(WebElement element) {
 
-       WebDriver driver = DriverManager.getWebDriver().getDriver();
+    public static void elementHighlight(WebElement element)
+    {
         for (int i = 0; i < 2; i++) {
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript(
@@ -48,11 +50,25 @@ public class ElementManager {
                     element, "");
         }
     }
-    public static void setAttributeValue(WebElement elem,String atribute, String value){
-        WebDriver driver = DriverManager.getWebDriver().getDriver();
+
+    public static void setAttributeValue(WebElement elem,String atribute, String value)
+    {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         String scriptSetAttrValue = "arguments[0].setAttribute(arguments[1],arguments[2])";
         js.executeScript(scriptSetAttrValue, elem, atribute, value);
+    }
 
+    public static void setAttributeDisable(WebElement element)
+    {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        String scriptSetAttrValue = "arguments[0].setAttribute(arguments[1],arguments[2])";
+        js.executeScript(scriptSetAttrValue, element, "disable", " ");
+    }
+
+    public static WebElement getElementOption(String elementName)
+    {
+        WebElement element = driver.findElement(By.xpath("//option[contains(text(),"+elementName+")]"));
+        elementHighlight(element);
+        return element;
     }
 }

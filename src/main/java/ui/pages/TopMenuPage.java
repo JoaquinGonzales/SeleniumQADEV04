@@ -23,6 +23,7 @@ public class TopMenuPage extends BasePageObject{
     WebElement ProjectPageButton;
     @FindBy(xpath = "//div[@id='toolbar']/div/div[2]/ul/li[2]/a")
     WebElement TasksPageButton;
+
     public TopMenuPage()
     {
         PageFactory.initElements(driver,this);
@@ -41,5 +42,10 @@ public class TopMenuPage extends BasePageObject{
     {
         ProjectPageButton.click();
         return new ProjectPage();
+    }
+    public TaskPage goToTaskPage()
+    {
+        TasksPageButton.click();
+        return new TaskPage();
     }
 }

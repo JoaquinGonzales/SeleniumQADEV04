@@ -19,13 +19,13 @@ import ui.pages.ProjectPage;
  * Time: 9:03 AM
  * To change this template use File | Settings | File Templates.
  */
-public class ProjectStep {
+public class ProjectSteps {
     public MainPage main;
     public LoginPage loginPage;
     public CreateProjectPage createprojectPage;
     public ProjectPage projectPage;
-    public String newProjectName;
-    public String newProjectDescription;
+    public String newProjectName, newProjectDescription;
+
 
     @Given("^I want to create a project$")
     public void createProject()
@@ -59,7 +59,7 @@ public class ProjectStep {
     @Then("^I should have the project created in the main page$")
     public void projectCreated()
     {
-        boolean projectCreated = main.projectCreated(newProjectName);
+        boolean projectCreated = main.isElementCreated(newProjectName);
         Assert.assertEquals(projectCreated, true, "the project was created correctly");
     }
 

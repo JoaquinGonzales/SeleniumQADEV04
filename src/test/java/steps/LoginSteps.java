@@ -13,7 +13,7 @@ import org.openqa.selenium.WebDriver;
 import ui.pages.MainPage;
 
 
-public class LoginStep {
+public class LoginSteps {
 
     public LoginPage loginPage;
     public MainPage mainPage;

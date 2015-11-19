@@ -3,20 +3,18 @@
   Feature: Task Management
            In order to manage Task to assign, create, delete and modify the task
            for a respective Project
-  Scenario: Create a new Task to assign a new project with a user associated
-    Given I navigate to Tasks Page
-    When I create a new task with Task Name "TaskName" and with taskDescription "TaskDescription"
-         And a Project with ProjectName "projectName" associated
-         And with StarDate "18 Nov 2015" and DueDate "18 Nov 2015"
+    Background:
+      Given I navigate to login Page
+      And I login as "<joaquinjqn2@gmail.com>" with password "<P4ssw0rd>"
+    @CreateTask
+    Scenario: Create a new Task to assign a new project with a user associated
+    Given I have Created a Project with "ProjectName","ProjectDescription","20 Nov 2015","25 Nov 2015"
+          And I navigate to Tasks Page
+      When I create a new task with Task Name "<TaskName>" and with taskDescription "<TaskDescription>"
+         And I associate a Project with ProjectName
+         And with the task StarDate "<18 Nov 2015>" and DueDate "<18 Nov 2015>"
     Then I should have a Task Created
 
-    @SmokeTest
-    Scenario: assign a new Task to assign a new project with a user associated
-      Given I have been logged in ProjectBubble.com
-      And I have a project created
-          And a User created to associate it to the new task
-      When I assign a new Task with an user
-      Then The task should be assigned to a project
-           And the task associated to an User
+
 
 

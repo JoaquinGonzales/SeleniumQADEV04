@@ -59,11 +59,16 @@ public class MainPage extends BasePageObject
     {
         return topMenuPage.goToProjectPage();
     }
-    public boolean projectCreated(String projectName)
+    public TaskPage gotoTaskPage()
+    {
+        return topMenuPage.goToTaskPage();
+    }
+    public boolean isElementCreated(String projectName)
     {
         By selector = By.xpath("//a[contains(text()," + projectName + ")]");
         WebElement element = driver.findElement(By.xpath("//a[contains(text()," + projectName + ")]"));
         ElementManager.elementHighlight(element);
         return ElementManager.getInstance().findElementPresent(selector);
     }
+
 }
